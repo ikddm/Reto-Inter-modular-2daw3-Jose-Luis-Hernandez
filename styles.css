@@ -1,0 +1,57 @@
+body{
+    overflow: hidden;
+}
+#containerLoginIzquierda {
+    float: left;
+    width: 50%;
+    height: calc(100vh - 15px); /* Resta un margen fijo de 15px para mantener la posición */
+    background-image: url("images/loginWallpaper.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    filter: blur();
+    text-align: center;
+    margin-bottom: 15px; /* Añade un margen inferior fijo */
+}
+
+#titulo h1 {
+    color: white;
+    font-size: 6vh;
+    padding: 1vw;
+}
+
+#parrafo {
+    width: 90%;
+    color: white;
+    font-size: 2em;
+    font-weight: 500;
+    position: relative;
+    top: 22%;
+    margin-left: 5%;
+    position: fixed;
+}
+
+#containerLoginDerecha {
+    width: 50%;
+    height: 100vh;
+    float: right;
+}
+
+#formularioInicio {
+    position: relative;
+    top: 27%;
+    margin-left: 5%;
+}
+
+#formularioInicio label,
+#formularioInicio input,
+#formularioInicio input[type="submit"] {
+    display: block;
+    margin-bottom: 15px;
+}
+
+#formularioInicio input,
+#formularioInicio input[type="submit"] {
+    width: 60%;
+    padding: 8px;
+    box-sizing: border-box;
+}
