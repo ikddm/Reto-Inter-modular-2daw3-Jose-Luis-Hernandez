@@ -1,35 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Include the Bootstrap CSS from a CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="styles.css">
     <title>Login</title>
 </head>
+
 <body>
-    <div id="containerLoginIzquierda">
-         
-        <div id="titulo"><h1>INICIO DE SESION</h1></div>
-        <div id="parrafo"><p>"Accede a pronósticos precisos y datos climáticos
-             actualizados.Tu fuente 
-            confiable para información meteorológica profesional."</p></div>
+
+    <div class="container w-80 bg-primary mt-5 rounded shadow">
+        <div class="row align-items-stretch">
+
+            <div class="col bg d-none d-lg-block col-md-5 col-lg-5 col-xl-6 rounded"></div>
+
+            <div class="col bg-white p-5 rounded-end">
+
+                <h2 class="fw-bold text-center pt-5 mb-5">Bienvenido</h2>
+
+                <form action="">
+                    <div class="mb-4">
+                        <label for="email" class="form-label">Correo electrónico</label>
+                        <input type="email" class="form-control" name="email">
+                    </div>
+                    <div class="mb-4">
+                        <label for="Contraseña" class="form-label">Contraseña</label>
+                        <input type="Contraseña" class="form-control" name="Contraseña">
+                    </div>
+                    <div class="mb-4 form-check">
+                        <input type="checkbox" name="conectado" class="form-check-input" onclick="alertaDatos()">
+                        <label for="conectado" class="form-check-label">Mantenerme conectado</label>
+                    </div>
+
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-primary btn-animate">Iniciar sesion
+                        </button>
+                    </div>
+
+                    <div class="my-3">
+                        <span>¿No tienes cuenta? <a href="#">Registrate</a></span><br>
+                        <span><a href="#">Recuperar contraseña</a></span>
+                    </div>
+
+                    <div class="container w-100 my-5">
+                        <div class="row text-center">
+                            <div class="col-12 mb-3"> ¡Inicia sesion con tus redes!</div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <button class="btn btn-outline-warning w-100 my-2">
+                                    <div class="row align-items-center">
+                                        <div class="col-2 d-none d-md-block">
+                                            <img src="images/Moodle-logo.svg.png" width="35px" alt="">
+                                        </div>
+                                        <div class="col-12 col-md-10 text-center">
+                                            Moodle
+                                        </div>
+                                    </div>
+                                </button>  
+                            </div>
+                            <div class="col">
+                                <button class="btn btn-outline-danger w-100 my-2">
+                                    <div class="row align-items-center">
+                                        <div class="col-2 d-none d-md-block">
+                                            <img src="images/Google__G__logo.svg.png" width="35px" alt="">
+                                        </div>
+                                        <div class="col-12 col-md-10 text-center">
+                                            Google
+                                        </div>
+                                    </div>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+
     </div>
-    
-    <div id="containerLoginDerecha">
-        
-        <form id="formularioInicio" action="procesar_login.php" method="post">
-            <label for="usuario">Usuario:</label>
-            <input type="text" id="usuario" name="usuario" required>
-            
-            <br>
-    
-            <label for="contrasena">Contraseña:</label>
-            <input type="password" id="contrasena" name="contrasena" required>
-    
-            <br>
-    
-            <input type="submit" value="Iniciar Sesión">
-        </form>
-    </div>
+
+
+    <script lang="JavaScript" src="login.js"></script>
 </body>
+
 </html>
