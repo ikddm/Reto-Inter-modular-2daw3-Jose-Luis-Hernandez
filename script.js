@@ -32,15 +32,15 @@ new Chart("myChart", {
   data: {
     labels: xValues,
     datasets: [{ 
-        data: [100,200],
+        data: [100,465,677,200],
       borderColor: "red",
       fill: false
     }, { 
-        data: [100,200],
+        data: [100,156,677,400],
       borderColor: "green",
       fill: false
     }, { 
-      data: [100,200],
+      data: [100,200,765,895],
       borderColor: "blue",
       fill: false
     }]

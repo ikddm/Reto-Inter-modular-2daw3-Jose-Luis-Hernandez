@@ -22,19 +22,139 @@
   <!-- Include your custom stylesheet -->
   <link rel="stylesheet" href="styles.css">
 
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" integrity="sha384-4LISF5TTJX/fLmGSxO53rV4miRxdg84mZsxmO8Rx5jGtp/LbrixFETvWa5a6sESd" crossorigin="anonymous">
+
 </head>
 
 <body>
+<div class="container">
+  
+</div>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light ">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#"><img src="/images/logoEmpresa.png"></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-lg-around" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Inicio</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Contacto</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Localizaciones disponibles
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <li class="text-center">Irún</li>
+              <li class="text-center">Vitoria</li>
+              <li class="text-center">Bilbao</li>
+              <li></li>
+              <li></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
 
-  <div class="container">
+  <div id="main" class="container mt-5 mb-5 p-5">
     <div class="row ">
-      <div class="col-lg-6">
+      <div class="col-sm-12 col-md-6">
+
         <div id="mapid"></div>
       </div>
-      <div class="col-md-6">
+      
+      <div class="col-sm-12 col-md-6">
         <canvas id="myChart"></canvas>
       </div>
     </div>
+  
+  <div class="container w-100 mt-5">
+    <div class="row">
+      <div class="col-12">
+        <h2 class="text-center text-white">MIS PANELES</h2>
+      </div>
+    </div>
+  </div>
+  <div class="container mt-5 w-85">
+    <div class="row">
+      <div class="col-sm-12 col-md-4 rounded-5">
+        <div class="card mb-4">
+          <img src="images/gestion-del-tiempo-810x455.webp" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h4 class="card-title text-center">Irún</h4>
+
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">Temperatura</li>
+            <li class="list-group-item">Humedad</li>
+
+          </ul>
+          <div class="card-body text-xl-center bg-secondary text-white">
+            <p>Añade tus items arrastrandolos a las cartas!</p>
+          </div>
+        </div>
+
+      </div>
+      <div class="col-sm-12 col-md-4 rounded-5">
+        <div class="card">
+          <img src="images/gestion-del-tiempo-810x455.webp" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h4 class="card-title text-center">Irún</h4>
+
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">Temperatura</li>
+            <li class="list-group-item">Humedad</li>
+
+          </ul>
+          <div class="card-body text-xl-center bg-secondary text-white">
+            <p>Añade tus items arrastrandolos a las cartas!</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-12 col-md-4 rounded-5">
+        <div class="card">
+          <img src="images/gestion-del-tiempo-810x455.webp" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h4 class="card-title text-center">Irún</h4>
+
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">Temperatura</li>
+            <li class="list-group-item">Humedad</li>
+
+          </ul>
+          <div class="card-body text-xl-center bg-secondary text-white">
+            <p>Añade tus items arrastrandolos a las cartas!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+<footer class="bg-light text-dark">
+  <div class="container-fluid p-3">
+    <div class="row">
+      <div class="col-md-6">
+        <p>&copy; 2024 TiempoEuskadi.</p>
+      </div>
+      
+      <div class="col-md-6 text-end ">
+        <a href="#" class="text-dark"><i class="bi bi-facebook fs-3"></i></a>
+        <a href="#" class="text-dark"><i class="bi bi-twitter-x fs-3"></i></a>
+        <a href="#" class="text-dark"><i class="bi bi-whatsapp fs-3"></i></a>
+    </div>
+    
+    </div>
+  </div>
+</footer> 
+
   </div>
 
   <!-- Include the Bootstrap JavaScript (requires Popper.js and jQuery) -->

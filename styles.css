@@ -1,4 +1,11 @@
-
+*{
+  margin: 0;
+  padding: 0;
+}
+nav img{
+  width: 120px;
+  height: 7W0px;
+}
 .bg{
     background-image: url(images/loginWallpaper.jpg);
     background-position: center center;
@@ -6,7 +13,7 @@
     }
 body{
     background: #ffe259;
-    background :linear-gradient(to right, #ffa751, #ffe259 );
+    background :linear-gradient(to right, #8ebbff, #fcb853 );
 }
 
 @keyframes fadeInUp {
@@ -25,16 +32,30 @@ body{
     
   }
 
-
 #mapid {
     height: 300px;
-    width: 50%;
+    width: 100%;
     margin-top: 1.5%;
-
+    border-radius: 10px;
+    min-height: 300px;
+    
 }
 
-.grafico{
-    background-color: rgba(121, 120, 120, 0.144);
-    width: 18%;
-    height: 18%;
+#myChart{
+    margin-top: 1.5%;
+    background-color: rgb(255, 255, 255);
+    width: 100%;
+    height: 290px;
+    min-height: 300px;
+    border-radius: 10px;
+   
+}
+.card{
+  border:0;
+}
+
+#main{
+  border-radius: 10px;
+  background-color: #1564dab6;
+  
 }
