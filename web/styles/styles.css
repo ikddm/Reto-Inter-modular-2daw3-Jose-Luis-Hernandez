@@ -7,13 +7,14 @@ nav img{
   height: 7W0px;
 }
 .bg{
-    background-image: url(images/loginWallpaper.jpg);
+    background-image: url(../images/loginWallpaper.jpg);
     background-position: center center;
     background-repeat: no-repeat;
     }
 body{
     background: #ffe259;
     background :linear-gradient(to right, #8ebbff, #fcb853 );
+    
 }
 
 @keyframes fadeInUp {
