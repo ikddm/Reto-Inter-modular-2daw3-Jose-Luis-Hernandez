@@ -56,7 +56,8 @@ class AuthController extends Controller
   $token = $tokenResult->token;
 
   return response()->json([
-    'access_token' => $tokenResult->accessToken,
+    //'access_token' => $tokenResult->accessToken,
+    
     'message' => 'Successfully created user!'
   ], 201);
   }
