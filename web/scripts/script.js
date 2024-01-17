@@ -50,3 +50,26 @@ new Chart("myChart", {
   }
 });
 
+
+// que el fondo cambie solo 
+document.addEventListener('DOMContentLoaded', function () {
+  const body = document.body;
+  const images = [
+    'url(images/wallpaper1.jpg)',
+    'url(images/wallpaper2.jpg)',
+    // Add more image paths as needed
+  ];
+  let currentImageIndex = 0;
+
+  function changeBackground() {
+    currentImageIndex = (currentImageIndex + 1) % images.length;
+    const imagePath = images[currentImageIndex];
+    body.style.backgroundImage = imagePath;
+  }
+
+  // Set the initial background
+  changeBackground();
+
+  // Call the function every 5000 milliseconds (5 seconds) after the initial setting
+  setInterval(changeBackground, 12000);
+});
