@@ -22,14 +22,18 @@
 
                 <h2 class="fw-bold text-center pt-5 mb-5">Bienvenido</h2>
 
-                <form action="">
+                <form onsubmit="register(nombre.value, email.value, contrasena.value)">
+                    <div class="mb-4">
+                        <label for="nombre" class="form-label">Nombre</label>
+                        <input type="nombre" class="form-control" name="nombre">
+                    </div>
                     <div class="mb-4">
                         <label for="email" class="form-label">Correo electrónico</label>
                         <input type="email" class="form-control" name="email">
                     </div>
                     <div class="mb-4">
                         <label for="Contrasena" class="form-label">Contraseña</label>
-                        <input type="Contrasena" class="form-control" name="Contrasena">
+                        <input type="password" class="form-control" name="contrasena">
                     </div>
                     <div class="mb-4 form-check">
                         <input type="checkbox" name="conectado" class="form-check-input" onclick="alertaDatos()">
