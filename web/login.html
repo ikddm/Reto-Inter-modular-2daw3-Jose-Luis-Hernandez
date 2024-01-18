@@ -20,12 +20,13 @@
 
             <div class="col bg-white p-5 rounded-end">
 
-                <h2 class="fw-bold text-center pt-5 mb-5">Bienvenido</h2>
 
-                <form onsubmit="register(nombre.value, email.value, contrasena.value)">
+
+                <form id="formularioRegister">
+                    <h2 class="fw-bold text-center pt-5 mb-5">Regístrate</h2>
                     <div class="mb-4">
                         <label for="nombre" class="form-label">Nombre</label>
-                        <input type="nombre" class="form-control" name="nombre">
+                        <input type="nombre" id="nombre" class="form-control" name="nombre">
                     </div>
                     <div class="mb-4">
                         <label for="email" class="form-label">Correo electrónico</label>
@@ -35,19 +36,19 @@
                         <label for="Contrasena" class="form-label">Contraseña</label>
                         <input type="password" class="form-control" name="contrasena">
                     </div>
-                    <div class="mb-4 form-check">
-                        <input type="checkbox" name="conectado" class="form-check-input" onclick="alertaDatos()">
-                        <label for="conectado" class="form-check-label">Mantenerme conectado</label>
+                    <div id="recordarme" class="mb-4 form-check">
+                        <input type="checkbox" name="conectado" class="form-check-input">
+                        <label for="conectado" class="form-check-label">Recordarme</label>
                     </div>
 
                     <div class="d-grid">
-                        <button type="submit" class="btn btn-primary btn-animate">Iniciar sesion
+                        <button id="iniciarSesion" type="submit" class="btn btn-primary btn-animate">Registrarme
                         </button>
+
                     </div>
 
                     <div class="my-3">
-                        <span>¿No tienes cuenta? <a href="#">Registrate</a></span><br>
-                        <span><a href="#">Recuperar contraseña</a></span>
+                        <span id="tieneCuenta" onclick="cambiarFormulario()">¿Ya tienes cuenta? <a href="#">Inicia sesión</a></span><br>
                     </div>
 
                     <div class="container w-100 my-5">
@@ -65,7 +66,63 @@
                                             Moodle
                                         </div>
                                     </div>
-                                </button>  
+                                </button>
+                            </div>
+                            <div class="col">
+                                <button class="btn btn-outline-danger w-100 my-2">
+                                    <div class="row align-items-center">
+                                        <div class="col-2 d-none d-md-block">
+                                            <img src="images/Google__G__logo.svg.png" width="35px" alt="">
+                                        </div>
+                                        <div class="col-12 col-md-10 text-center">
+                                            Google
+                                        </div>
+                                    </div>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                </form>
+
+                <form id="formularioInicioSesion" class="d-none">
+                    <h2 class="fw-bold text-center pt-5 mb-5">Inicia Sesion</h2>
+                    <div class="mb-4">
+                        <label for="email" class="form-label">Correo electrónico</label>
+                        <input type="email" class="form-control" name="email">
+                    </div>
+                    <div class="mb-4">
+                        <label for="Contrasena" class="form-label">Contraseña</label>
+                        <input type="password" class="form-control" name="contrasena">
+                    </div>
+
+                    <div class="d-grid">
+                        <button id="iniciarSesion" type="submit" class="btn btn-primary btn-animate">iniciar Sesion
+                        </button>
+
+                    </div>
+
+                    <div class="my-3">
+                        <span id="tieneCuenta" onclick="cambiarFormulario()">¿No tienes cuenta? <a
+                                href="#">Regístrate</a></span><br>
+                    </div>
+
+                    <div class="container w-100 my-5">
+                        <div class="row text-center">
+                            <div class="col-12 mb-3"> ¡Inicia sesion con tus redes!</div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <button class="btn btn-outline-warning w-100 my-2">
+                                    <div class="row align-items-center">
+                                        <div class="col-2 d-none d-md-block">
+                                            <img src="images/Moodle-logo.svg.png" width="35px" alt="">
+                                        </div>
+                                        <div class="col-12 col-md-10 text-center">
+                                            Moodle
+                                        </div>
+                                    </div>
+                                </button>
                             </div>
                             <div class="col">
                                 <button class="btn btn-outline-danger w-100 my-2">
@@ -86,11 +143,10 @@
 
             </div>
         </div>
-
     </div>
 
-
     <script lang="JavaScript" src="scripts/login.js"></script>
+
 </body>
 
 </html>

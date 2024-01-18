@@ -51,6 +51,10 @@ new Chart("myChart", {
 });
 
 
+
+
+
+/*
 // que el fondo cambie solo 
 document.addEventListener('DOMContentLoaded', function () {
   const body = document.body;
@@ -73,3 +77,4 @@ document.addEventListener('DOMContentLoaded', function () {
   // Call the function every 5000 milliseconds (5 seconds) after the initial setting
   setInterval(changeBackground, 12000);
 });
+*/
