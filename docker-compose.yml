@@ -39,4 +39,14 @@ services:
     depends_on:
       - mysql
 
+  laravelApi:
+    image: bitnami/laravel
+    container_name: LaravelApi
+    volumes:
+      - ./LaravelApi/:/var/www/html/
+    ports:
+      - "8083:8000"
+    depends_on:
+      - mysql
+
   
