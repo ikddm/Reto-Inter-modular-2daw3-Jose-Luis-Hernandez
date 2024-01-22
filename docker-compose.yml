@@ -40,7 +40,7 @@ services:
       - mysql
 
   laravelApi:
-    image: bitnami/laravel
+    image: markosmartinez/laravelpassport-php8.2
     container_name: LaravelApi
     volumes:
       - ./LaravelApi/:/var/www/html/

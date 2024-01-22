@@ -17,7 +17,7 @@ function cambiarFormulario() {
     var formInicioSesion = document.getElementById('formularioInicioSesion');
 
     
-    formRegistro.classList.toggle('d-none');
+    formRegistro.classList.toggle('d-none'); 
     formInicioSesion.classList.toggle('d-none');
 }
 

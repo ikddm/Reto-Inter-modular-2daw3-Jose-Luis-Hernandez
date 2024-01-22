@@ -8,9 +8,9 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 }).addTo(map);
 
 var lugares = [
-  { "nombre": "Donosti", "latitud": 43.3183, "longitud": -1.9812, "regions": 'basque_country', "zones": 'donostialdea', "locations": 'donostia'},
-  { "nombre": "Bilbao", "latitud": 43.2630, "longitud": -2.9350, "regions": 'basque_country', "zones": 'great_bilbao', "locations": 'bilbao'},
-  { "nombre": "Vitoria", "latitud":  42.8599, "longitud": -2.6818, "regions": 'basque_country', "zones": 'vitoria_gasteiz', "locations": 'gasteiz'}
+  { "nombre": "Donosti", "latitud": 43.3183, "longitud": -1.9812, "regions": 'basque_country', "zones": 'donostialdea', "locations": 'donostia' },
+  { "nombre": "Bilbao", "latitud": 43.2630, "longitud": -2.9350, "regions": 'basque_country', "zones": 'great_bilbao', "locations": 'bilbao' },
+  { "nombre": "Vitoria", "latitud": 42.8599, "longitud": -2.6818, "regions": 'basque_country', "zones": 'vitoria_gasteiz', "locations": 'gasteiz' }
 ];
 
 lugares.forEach(lugar => {
@@ -18,28 +18,45 @@ lugares.forEach(lugar => {
   marker.bindTooltip(lugar.nombre, {
     permanent: false,
     direction: 'top',
-    offset: L.point(0, -20)
+    offset: L.point(0, -20),
+    className: 'tooltips'
   });
-  
-  marker.on('mouseover', async function () {
-    let regions = lugar.regions;
-    let zones= lugar.zones;
-    let locations = lugar.locations;
 
-    const options = {
-      method: 'GET',
-      headers: {
-        Authorization: 'Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJtZXQwMS5hcGlrZXkiLCJpc3MiOiJJRVMgUExBSUFVTkRJIEJISSBJUlVOIiwiZXhwIjoyMjM4MTMxMDAyLCJ2ZXJzaW9uIjoiMS4wLjAiLCJpYXQiOjE2Mzk3NDc5MDcsImVtYWlsIjoiaWtkZG1AcGxhaWF1bmRpLm5ldCJ9.TWKW-eX7m9_JzLBvSac45d7bBvnPXkDBsGAbeHpkQN1mug_EDAlV_eEoQ9k1WSa0PadHc8dAAhptsO-XtyNIXK4VE91ffFOWF7IA17DTr3eT2cIuB08vsKJ5dn10JK_kldR8bL3ZPioNAYux0GKvXlBWfIJ8_kHqE_Ji5j6NjxgqCN8cxNMx6QQplf7PhvLVTi6QsNUQGbZ-2T2UKZ3dln9Fcy1s4Kwp_Wb058V943zPJFr43SURDjZ9qpTQR7HVgDgDU2EiM6GU4HOgKBfAiU-zVgr7soVPTeo-6GJ6nbNxBPQ2NCDwNf5ZsqcAPpMbqAc5kQeoGQVfCHDOJZblqA'
+  marker.on('click', function () {
+    cards = document.getElementsByClassName("carta");
+    for (let card of cards) {
+      if (lugar.nombre == card.className.split(" ")[1]) {
+        if (card.style.display == "none") {
+          
+          card.classList.toggle('d-none');
+          
+        } else {
+          card.classList.toggle('d-none');
+        }
       }
-    };
+    }
+  })
 
-    fetch(`https://api.euskadi.eus/euskalmet/weather/regions/${regions}/zones/${zones}/locations/${locations}/forecast/at/2024/01/18/for/20240119`, options)
-      
-      .then(response => response.json())
-      .then(response => 
-        console.log(response.forecastText.SPANISH))
-      .catch(err => console.error(err));
-  });
+
+marker.on('mouseover', async function () {
+  let regions = lugar.regions;
+  let zones = lugar.zones;
+  let locations = lugar.locations;
+
+  const options = {
+    method: 'GET',
+    headers: {
+      Authorization: 'Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJtZXQwMS5hcGlrZXkiLCJpc3MiOiJJRVMgUExBSUFVTkRJIEJISSBJUlVOIiwiZXhwIjoyMjM4MTMxMDAyLCJ2ZXJzaW9uIjoiMS4wLjAiLCJpYXQiOjE2Mzk3NDc5MDcsImVtYWlsIjoiaWtkZG1AcGxhaWF1bmRpLm5ldCJ9.TWKW-eX7m9_JzLBvSac45d7bBvnPXkDBsGAbeHpkQN1mug_EDAlV_eEoQ9k1WSa0PadHc8dAAhptsO-XtyNIXK4VE91ffFOWF7IA17DTr3eT2cIuB08vsKJ5dn10JK_kldR8bL3ZPioNAYux0GKvXlBWfIJ8_kHqE_Ji5j6NjxgqCN8cxNMx6QQplf7PhvLVTi6QsNUQGbZ-2T2UKZ3dln9Fcy1s4Kwp_Wb058V943zPJFr43SURDjZ9qpTQR7HVgDgDU2EiM6GU4HOgKBfAiU-zVgr7soVPTeo-6GJ6nbNxBPQ2NCDwNf5ZsqcAPpMbqAc5kQeoGQVfCHDOJZblqA'
+    }
+  };
+
+  fetch(`https://api.euskadi.eus/euskalmet/weather/regions/${regions}/zones/${zones}/locations/${locations}/forecast/at/2024/01/22/for/20240123`, options)
+
+    .then(response => response.json())
+    .then(response => marker.setTooltipContent(response.forecastText.SPANISH))
+
+    .catch(err => console.error(err));
+});
 });
 
 /*Esto es el gráfico en un futuro los datos tienen que ser consultas a la api*/
@@ -68,10 +85,6 @@ new Chart("myChart", {
     legend: { display: false }
   }
 });
-
-
-
-
 
 
 
