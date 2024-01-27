@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Http\Controllers;
+
 use App\Models\Zona;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
@@ -24,15 +26,17 @@ class ZonaController extends Controller
 
             // Capturar la respuesta de la solicitud HTTP
             $response = Http::get($url);
+            
+            
 
             if ($response->successful()) {
                 // Procesar los datos y guardarlos en la base de datos
                 $data = $response->json();
-
+            
                 Zona::create([
-                    'nombre_ciudad' => $data['NOMBRE'],
-                    'latitud' => $data['LATITUD_ETRS89_REGCAN95'],
-                    'longitud' => $data['LONGITUD_ETRS89_REGCAN95'],
+                    'nombre_ciudad' => $data['municipio']['NOMBRE'],
+                    'latitud' => $data['municipio']['LATITUD_ETRS89_REGCAN95'],
+                    'longitud' => $data['municipio']['LONGITUD_ETRS89_REGCAN95'],
                     'estado_cielo' => $data['stateSky']['description'],
                     'temperatura_actual' => $data['temperatura_actual'],
                     'temperatura_max' => $data['temperaturas']['max'],
@@ -40,12 +44,13 @@ class ZonaController extends Controller
                     'humedad' => $data['humedad'],
                     'precipitacion' => $data['precipitacion'],
                     'viento' => $data['viento'],
+                    'codigo_provincia'=> $codigoProvincia,
+                    'codigo_ciudad'=> $codigoCiudad
                 ]);
             } else {
                 return response()->json(['error' => 'Error al obtener los datos meteorológicos'], 500);
-            }
+            }            
         }
-
         return response()->json(['mensaje' => 'Datos meteorológicos guardados correctamente']);
     }
 }

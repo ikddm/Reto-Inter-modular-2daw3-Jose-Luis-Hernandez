@@ -8,9 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Zona extends Model
 {
     use HasFactory;
+    public $timestamps = false;
 
     protected $fillable = [
-        'nombre_cuidad',
+        'nombre_ciudad',
         'latitud',
         'longitud',
         'estado_cielo',
@@ -20,10 +21,8 @@ class Zona extends Model
         'humedad',
         'precipitacion',
         'viento',
-        'codigo_cuidad',
+        'codigo_ciudad',
         'codigo_provincia',
     ];
-    
-    
 }
 
