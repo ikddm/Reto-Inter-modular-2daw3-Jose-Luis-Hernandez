@@ -8,7 +8,7 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 }).addTo(map);
 
 var lugares = [
-  { "nombre": "Donosti", "latitud": 43.3183, "longitud": -1.9812, "regions": 'basque_country', "zones": 'donostialdea', "locations": 'donostia' },
+  { "nombre": "Donosti", "latitud": 43.3183, "longitud": -1.9812, "regions": 'basque_country', "zones": 'donostialdea', "locations": 'donostia',"codigoProvincia":20 ,"codigoCiudad": 20069 },
   { "nombre": "Bilbao", "latitud": 43.2630, "longitud": -2.9350, "regions": 'basque_country', "zones": 'great_bilbao', "locations": 'bilbao' },
   { "nombre": "Vitoria", "latitud": 42.8599, "longitud": -2.6818, "regions": 'basque_country', "zones": 'vitoria_gasteiz', "locations": 'gasteiz' }
 ];
@@ -23,20 +23,44 @@ lugares.forEach(lugar => {
   });
 
   marker.on('click', function () {
-    cards = document.getElementsByClassName("carta");
-    for (let card of cards) {
-      if (lugar.nombre == card.className.split(" ")[1]) {
-        if (card.style.display == "none") {
-          
-          card.classList.toggle('d-none');
-          
-        } else {
-          card.classList.toggle('d-none');
-        }
-      }
-    }
-  })
-
+    console.log("Hiciste clic en el marcador");
+    fetch(`http://localhost:8082/api/actualizarDatosZonas/${lugar.codigoProvincia}/${lugar.codigoCiudad}`, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*'
+      },
+        
+    }) 
+    // Utilizar las propiedades del objeto 'lugar'
+      .then(response => response.json())
+      .then(data => {
+        // Crear una nueva carta para el lugar
+        var nuevaCarta = document.createElement('div');
+        nuevaCarta.classList.add('carta', lugar.nombre, 'col-sm-12', 'col-md-4', 'rounded-5');
+        nuevaCarta.classList.add('d-none');
+        nuevaCarta.innerHTML = `
+          <div class="card mb-4">
+            <img src="images/gestion-del-tiempo-810x455.webp" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h4 class="card-title text-center">${lugar.nombre}</h4>
+            </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item temperatura">Temperatura: ${data.temperatura_actual}°C</li>
+              <li class="list-group-item humedad">Humedad: ${data.humedad}%</li>
+            </ul>
+            <div class="card-body text-xl-center bg-secondary text-white">
+              <p>Añade tus items arrastrandolos a las cartas!</p>
+            </div>
+          </div>
+        `;
+        // Agregar la nueva carta al contenedor de cartas
+        document.getElementById('contenedorDeCartas').appendChild(nuevaCarta);
+        nuevaCarta.classList.toggle('d-none'); // Mostrar la nueva carta
+      })
+      .catch(error => {
+        console.error('Error al obtener los datos del lugar:', error);
+      });
+});
 
 marker.on('mouseover', async function () {
   let regions = lugar.regions;
@@ -54,10 +78,51 @@ marker.on('mouseover', async function () {
 
     .then(response => response.json())
     .then(response => marker.setTooltipContent(response.forecastText.SPANISH))
-
     .catch(err => console.error(err));
 });
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /*Esto es el gráfico en un futuro los datos tienen que ser consultas a la api*/
 
@@ -85,6 +150,34 @@ new Chart("myChart", {
     legend: { display: false }
   }
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
