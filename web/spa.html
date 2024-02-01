@@ -25,6 +25,8 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
     integrity="sha384-4LISF5TTJX/fLmGSxO53rV4miRxdg84mZsxmO8Rx5jGtp/LbrixFETvWa5a6sESd" crossorigin="anonymous">
 
+
+
 </head>
 
 <body>
@@ -97,13 +99,14 @@
     <div class="container w-100 mt-5">
       <div class="row">
         <div class="col-12">
-          <h2 class="text-center text-white d-none">MIS PANELES</h2>
+          <h2 id="misPaneles" class="text-center text-white d-none">MIS PANELES</h2>
         </div>
       </div>
     </div>
-    <div id="contenedorDeCartas" class="container mt-5 w-85">
- 
+    <div id="contenedorDeCartas" class="container row mt-5 w-85 col-md-12">
+
     </div>
+    <button onclick="generarCards()"></button>
   </div>
 
   <footer class="bg-light text-dark">
@@ -124,7 +127,10 @@
   </footer>
 
   </div>
-
+  <script
+  src="https://code.jquery.com/jquery-3.7.1.min.js"
+  integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+  crossorigin="anonymous"></script>
   <!-- Include the Bootstrap JavaScript (requires Popper.js and jQuery) -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
@@ -132,6 +138,8 @@
 
   <!-- Include your custom JavaScript -->
   <script lang="JavaScript" src="scripts/script.js"></script>
+
+
 
 </body>
 

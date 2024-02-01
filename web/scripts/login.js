@@ -45,7 +45,7 @@ async function register(nombre, correo, contrasena) {
         if ([data["message"] == 'Successfully created user!']) {
             console.log(data["email"], data["password"]);
             login(data["email"], data["password"]);
-            window.location.href = "http://localhost:8080/spa.html"
+            window.location.href = "http://localhost:8081/spa.html"
         }
 
     } catch (error) {

@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\RegistroController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ZonaController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -20,3 +22,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('insertar-municipios', [ZonaController::class, 'insertarMunicipios']);
+
+Route::get('obtener-datos', [ZonaController::class, 'obtenerDatos']);
+
+Route::get('insertar-historicos', [RegistroController::class, 'insertarHistoricos']);
+

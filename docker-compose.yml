@@ -46,6 +46,7 @@ services:
       - ./LaravelApi/:/var/www/html/
     ports:
       - "8083:8000"
+    command: ["sh", "-c", "php artisan app:generar-zonas && php artisan schedule:work"]
     depends_on:
       - mysql
 
@@ -56,5 +57,3 @@ services:
       - 8090:80
     environment:
       - PMA_ARBITRARY=1
-
-  
