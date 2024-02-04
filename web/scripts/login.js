@@ -25,7 +25,6 @@ function cambiarFormulario() {
 async function register(nombre, correo, contrasena) {
 
     try {
-        console.log("llego");
         let respuesta = await fetch(laravelApi + "/api/auth/register", {
             method: "POST",
             body: JSON.stringify({
@@ -40,7 +39,6 @@ async function register(nombre, correo, contrasena) {
         });
 
         let data = await respuesta.json();
-        console.log(data);
 
         if ([data["message"] == 'Successfully created user!']) {
             console.log(data["email"], data["password"]);
@@ -93,5 +91,3 @@ async function logout() {
         console.log(error);
     }
 }
-
-// aqui va ir una funcionalidad sobre que en base a que estacion de año este la foto de fondo cambiara 

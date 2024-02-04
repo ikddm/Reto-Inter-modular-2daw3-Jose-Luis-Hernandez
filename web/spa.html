@@ -2,144 +2,114 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SPA Jose Luis Hernández</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SPA Jose Luis Hernández</title>
 
-  <!-- Include the Leaflet CSS from a CDN -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css" />
+    <!-- Include the Leaflet CSS from a CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css" />
 
-  <!-- Include the Leaflet JavaScript from a CDN -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
+    <!-- Include the Leaflet JavaScript from a CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
 
-  <!-- Include the Chart.js from a CDN -->
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Include the Chart.js from a CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-  <!-- Include the Bootstrap CSS from a CDN -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <!-- Include the Bootstrap CSS from a CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+        crossorigin="anonymous">
 
-  <!-- Include your custom stylesheet -->
-  <link rel="stylesheet" href="styles/styles.css">
+    <!-- Include your custom stylesheet -->
+    <link rel="stylesheet" href="styles/styles.css">
 
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
-    integrity="sha384-4LISF5TTJX/fLmGSxO53rV4miRxdg84mZsxmO8Rx5jGtp/LbrixFETvWa5a6sESd" crossorigin="anonymous">
-
-
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
+        integrity="sha384-4LISF5TTJX/fLmGSxO53rV4miRxdg84mZsxmO8Rx5jGtp/LbrixFETvWa5a6sESd"
+        crossorigin="anonymous">
 </head>
 
 <body>
 
-  <div class="container">
+    <div class="container">
 
-  </div>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light ">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#"><img src="images/logoEmpresa.png"></a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
-        aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse justify-content-lg-around" id="navbarNavDropdown">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Inicio</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Contacto</a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
-              data-bs-toggle="dropdown" aria-expanded="false">
-              Localizaciones disponibles
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <li class="text-center">Irún</li>
-              <li class="text-center">Bilbao</li>
-              <li class="text-center">Hondarribia</li>
-              <li></li>
-              <li></li>
-            </ul>
-          </li>
-        </ul>
-      </div>
     </div>
-  </nav>
 
-  <div id="main" class="container mt-5 mb-5 p-5">
-    <div class="row ">
-      <div class="col-sm-12 col-md-12">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-6 text-white">
-              <h1>Mapa</h1>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light ">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#"><img src="images/logoEmpresa.png"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-lg-around" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Contacto</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Localizaciones disponibles
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <li class="text-center">Irún</li>
+                            <li class="text-center">Bilbao</li>
+                            <li class="text-center">Hondarribia</li>
+                        </ul>
+                    </li>
+                </ul>
             </div>
-          </div>
         </div>
+    </nav>
 
-        <div id="mapid">
-
-        </div>
-
-      </div>
-
-      <div class="col-sm-12 col-md-6">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-6 text-white">
-              <h1>Gráfico</h1>
+    <div id="main" class="container mt-5 mb-5 p-5">
+        <div class="row">
+            <div class="col-sm-12 col-md-6">
+                <h1 class="text-white mb-2">Mapa</h1>
+                <div id="mapid"></div>
             </div>
-          </div>
-        </div>
-        <canvas id="myChart"></canvas>
-      </div>
-    </div>
-
-    <div class="container w-100 mt-5">
-      <div class="row">
-        <div class="col-12">
-          <h2 id="misPaneles" class="text-center text-white d-none">MIS PANELES</h2>
-        </div>
-      </div>
-    </div>
-    <div id="contenedorDeCartas" class="container row mt-5 w-85 col-md-12">
-
-    </div>
-    <button onclick="generarCards()"></button>
-  </div>
-
-  <footer class="bg-light text-dark">
-    <div class="container-fluid p-3">
-      <div class="row">
-        <div class="col-md-6">
-          <p>&copy; 2024 TiempoEuskadi.</p>
+            <div class="col-sm-12 col-md-6">
+                <h1 class="text-white mb-2">Gráfico</h1>
+                <canvas id="myChart"></canvas>
+            </div>
         </div>
 
-        <div class="col-md-6 text-end ">
-          <a href="#" class="text-dark"><i class="bi bi-facebook fs-3"></i></a>
-          <a href="#" class="text-dark"><i class="bi bi-twitter-x fs-3"></i></a>
-          <a href="#" class="text-dark"><i class="bi bi-whatsapp fs-3"></i></a>
+        <div class="container w-100 mt-5">
+            <div class="row">
+                <div class="col-12">
+                    <h2 id="misPaneles" class="text-center text-white d-none">MIS PANELES</h2>
+                </div>
+            </div>
         </div>
-
-      </div>
+        <div id="contenedorDeCartas" class="container row mt-5 w-85 col-md-12"></div>
     </div>
-  </footer>
 
-  </div>
-  <script
-  src="https://code.jquery.com/jquery-3.7.1.min.js"
-  integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
-  crossorigin="anonymous"></script>
-  <!-- Include the Bootstrap JavaScript (requires Popper.js and jQuery) -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-    crossorigin="anonymous"></script>
+    <footer class="bg-light text-dark">
+        <div class="container-fluid p-3">
+            <div class="row">
+                <div class="col-md-6">
+                    <p>&copy; 2024 TiempoEuskadi.</p>
+                </div>
+                <div class="col-md-6 text-end">
+                    <a href="#" class="text-dark"><i class="bi bi-facebook fs-3"></i></a>
+                    <a href="#" class="text-dark"><i class="bi bi-twitter-x fs-3"></i></a>
+                    <a href="#" class="text-dark"><i class="bi bi-whatsapp fs-3"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
 
-  <!-- Include your custom JavaScript -->
-  <script lang="JavaScript" src="scripts/script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <!-- Include the Bootstrap JavaScript (requires Popper.js and jQuery) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
 
-
+    <!-- Include your custom JavaScript -->
+    <script lang="JavaScript" src="scripts/script.js"></script>
 
 </body>
 

@@ -12,29 +12,20 @@ var lugares = [
 
 lugares.forEach(lugar => {
   var marker = L.marker([lugar.latitud, lugar.longitud]).addTo(map);
-  marker.bindTooltip(lugar.nombre, {
-    permanent: false,
-    direction: 'top',
-    offset: L.point(0, -20),
-    className: 'tooltips'
-  });
+
+  marker._icon.classList.add("tooltips");
 
   marker.on('click', function () {
-    marker
+    marker._icon.classList.toggle("huechange");
     cards = document.getElementsByClassName("carta");
     for (let card of cards) {
       if (lugar.nombre == card.className.split(" ")[1]) {
-        console.log(lugar.nombre);
-        if (card.style.display == "none") {
-          card.classList.toggle('d-none');
-        } else {
-          card.classList.toggle('d-none');
-        }
+        card.classList.toggle('d-none');
       }
     }
   });
 
-  marker.on('mouseover', async function () {
+  marker.on('mouseover', async function (event) {
     let regions = lugar.regions;
     let zones = lugar.zones;
     let locations = lugar.locations;
@@ -46,37 +37,46 @@ lugares.forEach(lugar => {
       }
     };
 
-   fetch(`https://api.euskadi.eus/euskalmet/weather/regions/${regions}/zones/${zones}/locations/${locations}/forecast/at/2024/01/22/for/20240123`, options)
-    .then(response => response.json())
-    .then(response => {
-      let prediccion = response.forecastText.SPANISH;
-      marker.setTooltipContent(prediccion);
-    })
+    fetch(`https://api.euskadi.eus/euskalmet/weather/regions/${regions}/zones/${zones}/locations/${locations}/forecast/at/2024/01/22/for/20240123`, options)
+      .then(response => response.arrayBuffer())
+      .then(buffer => {
+        const decoder = new TextDecoder('iso-8859-1');
+        const text = decoder.decode(buffer);
+        const data = JSON.parse(text);
+
+        const prediccion = data.forecastText.SPANISH;
+
+        // Create a tooltip and bind it to the marker
+        marker.bindTooltip(prediccion, { className: 'custom-tooltip' }).openTooltip();
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error);
+      });
+  });
+
+  // Close the tooltip when the mouse leaves the marker
+  marker.on('mouseout', function () {
+    marker.closeTooltip();
   });
 });
 
 function generarCards() {
-  // Llamar al fetch una vez fuera del bucle para obtener los datos comunes
   fetch(`http://localhost:8082/api/obtenerZonas`, {
     headers: {
       'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': '*'
+      'Access-Cotrol-Allow-Origin': '*'
     }
   })
     .then(response => response.json())
     .then(data => {
-      console.log(data);
-      // Iterar sobre cada lugar y verificar si la carta ya existe
       data.forEach(lugar => {
         let lugarNombre = lugar.nombre_ciudad.split("/");
         let cartaExistente = document.querySelector('.carta.' + lugarNombre[0]);
 
         if (cartaExistente) {
-          // Si la carta ya existe, actualiza su contenido
           cartaExistente.querySelector('.temperatura').textContent = `Temperatura: ${lugar.temperatura_actual} °C`;
           cartaExistente.querySelector('.humedad').textContent = `Humedad: ${lugar.humedad} %`;
         } else {
-          // Si la carta no existe, crea una nueva
           var nuevaCarta = document.createElement('div');
           nuevaCarta.classList.add('carta', lugarNombre[0], 'col-sm-12', 'col-md-4', 'rounded-5');
           nuevaCarta.classList.add('d-none');
@@ -106,12 +106,9 @@ function generarCards() {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-  // Llamando a la función generarCards después de que el DOM ha sido completamente cargado
   generarCards();
   setInterval(generarCards, 5000);
 });
-
-/* Esto es el gráfico en un futuro los datos tienen que ser consultas a la api */
 
 const xValues = [100, 200, 300, 400, 500, 600, 700];
 
@@ -137,28 +134,3 @@ new Chart("myChart", {
     legend: { display: false }
   }
 });
-
-/*
-// que el fondo cambie solo 
-document.addEventListener('DOMContentLoaded', function () {
-  const body = document.body;
-  const images = [
-    'url(images/wallpaper1.jpg)',
-    'url(images/wallpaper2.jpg)',
-    // Add more image paths as needed
-  ];
-  let currentImageIndex = 0;
-
-  function changeBackground() {
-    currentImageIndex = (currentImageIndex + 1) % images.length;
-    const imagePath = images[currentImageIndex];
-    body.style.backgroundImage = imagePath;
-  }
-
-  // Set the initial background
-  changeBackground();
-
-  // Call the function every 5000 milliseconds (5 seconds) after the initial setting
-  setInterval(changeBackground, 12000);
-});
-*/
