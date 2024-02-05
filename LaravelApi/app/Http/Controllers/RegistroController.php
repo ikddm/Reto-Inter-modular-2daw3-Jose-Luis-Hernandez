@@ -26,7 +26,7 @@ class RegistroController extends Controller
                 'temperatura_min' => $zona->temperatura_min,
                 'temperatura_max' => $zona->temperatura_max,
                 'viento' => $zona->viento,
-                'fecha' => Carbon::now(), // Utilizar Carbon para obtener la fecha actual
+                'fecha' => Carbon::today(), 
             ]);
         }
         return response()->json(['mensaje' => 'Datos históricos guardados correctamente']);
