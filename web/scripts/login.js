@@ -2,14 +2,26 @@ const laravelApi = 'http://localhost:8082';
 
 
 document.getElementById('formularioRegister').addEventListener('submit', function (event) {
-    event.preventDefault(); // Prevent the default form submission
+    event.preventDefault(); // Evitar la presentación del formulario por defecto
+    console.log("registro llego");
 
-    const nombre = document.getElementsByName('nombre')[0].value;
     const correo = document.getElementsByName('email')[0].value;
     const contrasena = document.getElementsByName('contrasena')[0].value;
 
     register(nombre, correo, contrasena);
 });
+
+document.getElementById('formularioInicioSesion').addEventListener('submit', function (event) {
+    event.preventDefault(); // Evitar la presentación del formulario por defecto
+    console.log("llego");
+
+    const correo = document.getElementsByName('email')[0].value;
+    const contrasena = document.getElementsByName('contrasena')[0].value;
+
+    // Llama a la función correspondiente para manejar el inicio de sesión
+    login(correo, contrasena);
+});
+
 
 function cambiarFormulario() {
     
@@ -41,9 +53,7 @@ async function register(nombre, correo, contrasena) {
         let data = await respuesta.json();
 
         if ([data["message"] == 'Successfully created user!']) {
-            console.log(data["email"], data["password"]);
             login(data["email"], data["password"]);
-            window.location.href = "http://localhost:8081/spa.html"
         }
 
     } catch (error) {
@@ -52,7 +62,7 @@ async function register(nombre, correo, contrasena) {
 };
 
 async function login(correo, contrasena) {
-
+    console.log(correo,contrasena);
     try {
         let respuesta = await fetch(laravelApi + "/api/auth/login", {
             method: "POST",
@@ -68,7 +78,7 @@ async function login(correo, contrasena) {
             }
         });
         let data = await respuesta.json();
-    
+        window.location.href = "http://localhost:8081/spa.html"
         
     } catch (error) {
         console.error(error);

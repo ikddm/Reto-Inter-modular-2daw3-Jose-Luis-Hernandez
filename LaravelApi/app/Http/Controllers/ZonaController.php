@@ -15,6 +15,9 @@ class ZonaController extends Controller
             ['codigoProvincia' => '20', 'codigoCiudad' => '20069'],
             ['codigoProvincia' => '01', 'codigoCiudad' => '01059'],
             ['codigoProvincia' => '48', 'codigoCiudad' => '48020'],
+            ['codigoProvincia' => '20', 'codigoCiudad' => '20045'],
+            ['codigoProvincia' => '48', 'codigoCiudad' => '48017'],
+            
             // Añade más códigos según sea necesario
         ];
 
