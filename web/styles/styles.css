@@ -1,50 +1,57 @@
-*{
+* {
   margin: 0;
   padding: 0;
 }
-nav img{
+
+
+nav img {
   width: 120px;
   height: 70px;
 }
-.bg{
-    background-image: url(../images/loginWallpaper.jpg);
-    background-position: center center;
-    background-repeat: no-repeat;
-    }
-body{
-  backdrop-filter: blur(4px);
-  background-size: cover;
-  background-position: center;
+
+.bg {
+  background-image: url(../images/loginWallpaper.jpg);
+  background-position: center center;
   background-repeat: no-repeat;
-  background-image: url(../images/wallpaper2.jpg);
+
 }
+
+body {
+  background: linear-gradient(to bottom, #146ae4, #016a81fd);
+  box-shadow: inset 0 8px 10px -10px rgba(255, 255, 255, 0.5);
+  background-repeat: no-repeat;
+  background-size: cover;
+  
+}
+
 
 #mapid {
-    height: 300px;
-    width: 100%;
-    margin-top: 1.5%;
-    border-radius: 10px;
-    min-height: 300px;
-
-}
-
-#myChart{
-    margin-top: 1.5%;
-    background-color: rgb(255, 255, 255);
-    width: 100%;
-    height: 200px;
-    min-height: 300px;
-    border-radius: 10px;
-   
-}
-.card{
-  border:0;
-}
-
-#main{
+  height: 300px;
+  width: 100%;
+  margin-top: 1.5%;
   border-radius: 10px;
-  background-color: #1564dab6;
-  
+  min-height: 300px;
+
+}
+
+#myChart {
+  margin-top: 1.5%;
+  background-color: rgb(255, 255, 255);
+  width: 100%;
+  height: 200px;
+  min-height: 300px;
+  border-radius: 10px;
+
+}
+
+.card {
+  border: 0;
+}
+
+#main {
+  border-radius: 10px;
+  background-color: #1c5ec2b6;
+
 }
 
 .huechange {
@@ -53,7 +60,8 @@ body{
 
 .custom-tooltip {
   width: 200px;
-  max-width: 200px; /* Adjust the max-width as needed */
+  max-width: 200px;
+  /* Adjust the max-width as needed */
   background-color: rgb(216, 213, 213);
   border: 1px solid #ccc;
   padding: 10px;
@@ -61,3 +69,39 @@ body{
   text-wrap: wrap;
 }
 
+#mapaContainer {
+  position: relative;
+}
+
+#loadingAnimation {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loader {
+  border: 16px solid #f3f3f3;
+  /* Light grey */
+  border-top: 16px solid #3498db;
+  /* Blue */
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  animation: spin 2s linear infinite;
+  /* Aquí se define la animación */
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}

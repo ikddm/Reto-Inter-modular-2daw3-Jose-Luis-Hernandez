@@ -17,19 +17,17 @@
 
     <!-- Include the Bootstrap CSS from a CDN -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
-        crossorigin="anonymous">
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 
     <!-- Include your custom stylesheet -->
     <link rel="stylesheet" href="styles/styles.css">
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
-        integrity="sha384-4LISF5TTJX/fLmGSxO53rV4miRxdg84mZsxmO8Rx5jGtp/LbrixFETvWa5a6sESd"
-        crossorigin="anonymous">
+        integrity="sha384-4LISF5TTJX/fLmGSxO53rV4miRxdg84mZsxmO8Rx5jGtp/LbrixFETvWa5a6sESd" crossorigin="anonymous">
 </head>
 
 <body>
-    
+
     <nav class="navbar navbar-expand-lg navbar-light bg-light ">
         <div class="container-fluid">
             <a class="navbar-brand" href="#"><img src="images/logoEmpresa.png"></a>
@@ -63,46 +61,44 @@
 
     <div id="main" class="container mt-5 mb-5 p-5">
         <div class="row">
-            <div class="col-sm-12 col-md-6">
-                <h1 class="text-white mb-2">Mapa</h1>
-                <div id="mapid"></div>
+            <div class="col-sm-12">
+                <div id="mapaContainer">
+                    <h1 class="text-white mb-2">Mapa</h1>
+                    <div id="mapid"></div>
+                    <div id="loadingAnimation" class="d-none"></div>
+                        
+                    </div>
+                </div>
+             
+
             </div>
             <div class="col-sm-12 col-md-6">
                 <h1 class="text-white mb-2">Gráfico</h1>
                 <canvas id="myChart"></canvas>
             </div>
-        </div>
-        <div class="mb-4 mt-4 text-center sticky-top">
-            <img class="draggable-icon" src="images/nublado.png" data-tipo="nublado" draggable="true" width="65px" height="65px">
-            <img class="draggable-icon" src="images/viento.png" data-tipo="viento" draggable="true" width="65px" height="65px">
-            <img class="draggable-icon" src="images/lluvia.png" data-tipo="lluvia" draggable="true" width="65px" height="65px">
-        </div>
-        
+            <div class="mb-4 mt-4 text-center sticky-top">
+                <img class="draggable-icon" src="images/nublado.png" data-tipo="nublado" draggable="true" width="65px"
+                    height="65px">
+                <img class="draggable-icon" src="images/viento.png" data-tipo="viento" draggable="true" width="65px"
+                    height="65px">
+                <img class="draggable-icon" src="images/lluvia.png" data-tipo="lluvia" draggable="true" width="65px"
+                    height="65px">
+            </div>
     
-        <div class="container w-100 mt-5">
-            <div class="row">
-                <div class="col-12">
-                    <h2 id="misPaneles" class="text-center text-white d-none">MIS PANELES</h2>
+    
+            <div class="container w-100 mt-5">
+                <div class="row">
+                    <div class="col-12">
+                        <h2 id="misPaneles" class="text-center text-white d-none">MIS PANELES</h2>
+                    </div>
                 </div>
             </div>
+            <div id="contenedorDeCartas" class="container row  w-85 col-md-12"></div>
         </div>
-        <div id="contenedorDeCartas" class="container row  w-85 col-md-12"></div>
-    </div>
+        </div>
+    
 
-    <footer class="bg-light text-dark ">
-        <div class="container-fluid p-3">
-            <div class="row">
-                <div class="col-md-6">
-                    <p>&copy; 2024 TiempoEuskadi.</p>
-                </div>
-                <div class="col-md-6 text-end">
-                    <a href="#" class="text-dark"><i class="bi bi-facebook fs-3"></i></a>
-                    <a href="#" class="text-dark"><i class="bi bi-twitter-x fs-3"></i></a>
-                    <a href="#" class="text-dark"><i class="bi bi-whatsapp fs-3"></i></a>
-                </div>
-            </div>
-        </div>
-    </footer>
+
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <!-- Include the Bootstrap JavaScript (requires Popper.js and jQuery) -->
