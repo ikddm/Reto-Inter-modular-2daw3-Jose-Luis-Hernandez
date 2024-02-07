@@ -40,12 +40,12 @@ async function generarCards() {
                       <ul class="list-group list-group-flush">
                           <li class="list-group-item temperatura">Temperatura: ${lugar.temperatura_actual} °C</li>
                           <li class="list-group-item humedad">Humedad: ${lugar.humedad} %</li>
-                          <li class="list-group-item viento d-none">Viento: ${lugar.viento} m/s</li>
-                          <li class="list-group-item nublado d-none ">Estado del cielo: ${lugar.estado_cielo}</li>
-                          <li class="list-group-item lluvia d-none ">Precipitación: ${lugar.precipitacion} mm</li>
+                          <li class="list-group-item viento border-1 border-dark border-dashed bg-dark-subtle d-none ">Viento: ${lugar.viento} m/s</li>
+                          <li class="list-group-item nublado border-1 border-dark border-dashed bg-dark-subtle d-none ">Estado del cielo: ${lugar.estado_cielo}</li>
+                          <li class="list-group-item lluvia border-1 border-dark border-dashed bg-dark-subtle d-none ">Precipitación: ${lugar.precipitacion} mm</li>
                       </ul>
                       <div class="card-body text-xl-center bg-secondary text-white">
-                          <p>Añade tus items arrastrándolos a las cartas!</p>
+                          <p>Añade tus items arrastrándolos a las cartas! y pulsa para borrarlos! </p>
                       </div>
                   </div>
               `;
@@ -171,7 +171,33 @@ function dropItem(event) {
   }
 }
 
-// Resto del código omitido por brevedad
+// Función para manejar el evento de clic en un ítem dentro de la carta
+function eliminarItem(event) {
+  // Oculta el elemento que ha sido clicado
+  event.target.classList.add('d-none');
+}
+
+// Función para manejar el evento de soltar el ítem en la carta
+function dropItem(event) {
+  event.preventDefault();
+
+  // Obtén el tipo de ícono soltado a partir del atributo "data-tipo"
+  const tipoIcono = event.dataTransfer.getData('text/plain').replace(/^.*[\\/]/, '').replace(/\..+$/, '');
+
+  // Obtén el elemento correspondiente dentro de la carta actual
+  const carta = event.currentTarget;
+
+  // Encuentra el elemento con la clase igual al tipo de ícono
+  const elementoMostrar = carta.querySelector(`.${tipoIcono}`);
+
+  // Verifica que el elemento exista antes de intentar acceder a su classList
+  if (elementoMostrar) {
+    // Cambia la clase para mostrar el elemento
+    elementoMostrar.classList.remove('d-none');
+    // Asigna el manejador de eventos de clic al elemento mostrado
+    elementoMostrar.addEventListener('click', eliminarItem);
+  }
+}
 
 
 // Función para crear un gráfico con ChartJS (código omitido por brevedad)
@@ -185,6 +211,7 @@ function conseguirFechaFormateada() {
   var fechaFormateada = year + '/' + month + '/' + day;
 
   return fechaFormateada;
+
 }
 
 function obtenerFechaDiaSiguiente() {

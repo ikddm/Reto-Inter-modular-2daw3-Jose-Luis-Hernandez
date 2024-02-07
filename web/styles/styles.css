@@ -16,14 +16,6 @@ nav img {
 
 }
 
-body {
-  background: linear-gradient(to bottom, #146ae4, #016a81fd);
-  box-shadow: inset 0 8px 10px -10px rgba(255, 255, 255, 0.5);
-  background-repeat: no-repeat;
-  background-size: cover;
-  
-}
-
 
 #mapid {
   height: 300px;
@@ -50,8 +42,7 @@ body {
 
 #main {
   border-radius: 10px;
-  background-color: #1c5ec2b6;
-
+  background-color: #0066ffb6;
 }
 
 .huechange {

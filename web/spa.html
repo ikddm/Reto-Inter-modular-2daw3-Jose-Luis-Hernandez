@@ -19,11 +19,17 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 
+    <!-- Include jQuery and jQuery UI from CDNs -->
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+
     <!-- Include your custom stylesheet -->
     <link rel="stylesheet" href="styles/styles.css">
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
         integrity="sha384-4LISF5TTJX/fLmGSxO53rV4miRxdg84mZsxmO8Rx5jGtp/LbrixFETvWa5a6sESd" crossorigin="anonymous">
+
 </head>
 
 <body>
@@ -50,9 +56,14 @@
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             <li class="text-center">Donosti</li>
-                            <li class="text-center">Bilbao</li>
+                            <li class="text-center">Irún</li>
                             <li class="text-center">Vitoria</li>
+                            <li class="text-center">Bilbao</li>
+                            <li class="text-center">Bermeo</li>
                         </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Cerrar Sesión</a>
                     </li>
                 </ul>
             </div>
@@ -66,16 +77,27 @@
                     <h1 class="text-white mb-2">Mapa</h1>
                     <div id="mapid"></div>
                     <div id="loadingAnimation" class="d-none"></div>
-                        
-                    </div>
+
                 </div>
-             
 
             </div>
             <div class="col-sm-12 col-md-6">
                 <h1 class="text-white mb-2">Gráfico</h1>
                 <canvas id="myChart"></canvas>
             </div>
+            <div class="col-sm-12 col-md-6 mt-5">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="from" class="text-white">Desde</label>
+                        <input type="text" id="from" name="from" class="form-control">
+                    </div>
+                    <div class="col-md-6 mt-3 mt-md-0">
+                        <label for="to" class="text-white">Hasta</label>
+                        <input type="text" id="to" name="to" class="form-control">
+                    </div>
+                </div>
+            </div>
+            
             <div class="mb-4 mt-4 text-center sticky-top">
                 <img class="draggable-icon" src="images/nublado.png" data-tipo="nublado" draggable="true" width="65px"
                     height="65px">
@@ -84,8 +106,7 @@
                 <img class="draggable-icon" src="images/lluvia.png" data-tipo="lluvia" draggable="true" width="65px"
                     height="65px">
             </div>
-    
-    
+
             <div class="container w-100 mt-5">
                 <div class="row">
                     <div class="col-12">
@@ -95,19 +116,60 @@
             </div>
             <div id="contenedorDeCartas" class="container row  w-85 col-md-12"></div>
         </div>
-        </div>
-    
+        <script>
+
+            /*
+            Función de JQuery para mostrar calendario
+            */
+
+            $(function () {
+                var dateFormat = "mm/dd/yy",
+                    from = $("#from")
+                        .datepicker({
+                            defaultDate: "01/01/2023",
+                            changeMonth: true,
+                            numberOfMonths: 1,
+                            minDate: new Date(2023, 0, 1),
+                            maxDate: new Date(2023, 11, 31)
+                        })
+                        .on("change", function () {
+                            to.datepicker("option", "minDate", getDate(this));
+                        }),
+                    to = $("#to").datepicker({
+                        defaultDate: "12/31/2023",
+                        changeMonth: true,
+                        numberOfMonths: 1,
+                        minDate: new Date(2023, 0, 1),
+                        maxDate: new Date(2023, 11, 31)
+                    })
+                        .on("change", function () {
+                            from.datepicker("option", "maxDate", getDate(this));
+                        });
+
+                function getDate(element) {
+                    var date;
+                    try {
+                        date = $.datepicker.parseDate(dateFormat, element.value);
+                    } catch (error) {
+                        date = null;
+                    }
+
+                    return date;
+                }
+            });
+
+
+        </script>
 
 
 
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-    <!-- Include the Bootstrap JavaScript (requires Popper.js and jQuery) -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-        crossorigin="anonymous"></script>
+        <!-- Include the Bootstrap JavaScript (requires Popper.js and jQuery) -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+            crossorigin="anonymous"></script>
 
-    <!-- Include your custom JavaScript -->
-    <script lang="JavaScript" src="scripts/script.js"></script>
+        <!-- Include your custom JavaScript -->
+        <script lang="JavaScript" src="scripts/script.js"></script>
 
 </body>
 
