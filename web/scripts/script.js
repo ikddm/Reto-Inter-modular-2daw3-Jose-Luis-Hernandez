@@ -1,3 +1,4 @@
+const conexion = "10.10.17.206";
 document.addEventListener('DOMContentLoaded', async function () {
   mostrarAnimacionCarga(); // Mostrar la animación de carga antes de iniciar la creación del mapa
   await generarCards();
@@ -7,7 +8,7 @@ document.addEventListener('DOMContentLoaded', async function () {
 
 async function generarCards() {
   try {
-    const response = await fetch(`http://localhost:8082/api/obtenerZonas`, {
+    const response = await fetch(`http://${conexion}:8082/api/obtenerZonas`, {
       headers: {
         'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': '*'

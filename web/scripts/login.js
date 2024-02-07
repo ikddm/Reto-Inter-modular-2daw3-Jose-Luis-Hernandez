@@ -1,4 +1,5 @@
-const laravelApi = 'http://localhost:8082';
+const laravelApi = 'http://10.10.17.206:8082';
+const conexion = "10.10.17.206";
 
 
 document.getElementById('formularioRegister').addEventListener('submit', function (event) {
