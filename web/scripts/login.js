@@ -1,5 +1,6 @@
-const laravelApi = 'http://localhost:8082';
 
+const  urlActual = (new URL(window.location.origin)).hostname;
+const laravelApi = "http://" + urlActual + "";
 
 document.getElementById('formularioRegister').addEventListener('submit', function (event) {
     event.preventDefault(); // Prevent default form submission behavior
@@ -39,7 +40,7 @@ function cambiarFormulario() {
 async function register(nombre, correo, contrasena) {
    
     try {
-        let respuesta = await fetch(laravelApi + "/api/auth/register", {
+        let respuesta = await fetch(laravelApi + ":8082/api/auth/register", {
             method: "POST",
             body: JSON.stringify({
                 name: nombre,
@@ -69,7 +70,7 @@ async function register(nombre, correo, contrasena) {
 async function login(correo, contrasena) {
     console.log(correo, contrasena);
     try {
-        let respuesta = await fetch(laravelApi + "/api/auth/login", {
+        let respuesta = await fetch(laravelApi + ":8082/api/auth/login", {
             method: "POST",
             body: JSON.stringify({
                 email: correo,
@@ -83,7 +84,7 @@ async function login(correo, contrasena) {
             }
         });
         let data = await respuesta.json();
-        window.location.href = "http://localhost:8081/spa.html"
+        window.location.href = laravelApi + ":80/spa.html"
 
     } catch (error) {
         console.error(error);

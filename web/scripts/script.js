@@ -1,18 +1,19 @@
-// Constante para la dirección de conexión
-const conexion = '10.10.17.206';
+const  urlActual = (new URL(window.location.origin)).hostname;
+const laravelApi = "http://" + urlActual + "";
+
 
 document.addEventListener('DOMContentLoaded', async function () {
   mostrarAnimacionCarga(); // Mostrar la animación de carga antes de iniciar la creación del mapa
   await generarCards();
   inicializarMapa();
   cargarBalizasGuardadas();
-  
+
   setInterval(generarCards, 5000);
 });
 
 async function generarCards() {
   try {
-    const response = await fetch(`http://${conexion}:8082/api/obtenerZonas`);
+    const response = await fetch(`${laravelApi}:8082/api/obtenerZonas`);
     if (!response.ok) {
       throw new Error('Error en la solicitud de datos');
     }
@@ -62,9 +63,9 @@ function crearNuevaCarta(lugar, lugarNombre) {
             <li class="list-group-item humedad">Humedad: ${lugar.humedad} %</li>
             <li class="list-group-item viento border-1 border-dark border-dashed bg-dark-subtle d-none ">Viento: ${lugar.viento} m/s</li>
             <li class="list-group-item nublado border-1 border-dark border-dashed bg-dark-subtle d-none ">Estado del cielo: ${lugar.estado_cielo}</li>
-            <li class="list-group-item lluvia border-1 border-dark border-dashed bg-dark-subtle d-none ">Precipitación: ${lugar.precipitacion} mm</li>
+            <li class="list-group-item lluvia border-1 border-dark border-dashed bg-dark-subtle d-none "> Precipitación: ${lugar.precipitacion} mm</li>
         </ul>
-        <div class="card-body text-xl-center bg-secondary text-white">
+        <div class="card-body text-xl-center descripcionesCard" style="background-color: #FC6736 !important;">
             <p>Añade tus items arrastrándolos a las cartas! y pulsa para borrarlos! </p>
         </div>
     </div>
@@ -90,7 +91,8 @@ function inicializarMapa() {
 
   // Iteración sobre lugares para agregar marcadores al mapa
   lugares.forEach(lugar => {
-    var marker = L.marker([lugar.latitud, lugar.longitud]).addTo(map);
+    // Crear un marcador con un atributo title
+    var marker = L.marker([lugar.latitud, lugar.longitud], { title: lugar.nombre }).addTo(map);
     marker._icon.classList.add("tooltips");
 
     // Eventos para mostrar y ocultar información al hacer clic y pasar el ratón sobre un marcador
@@ -214,6 +216,7 @@ function guardarEliminarBaliza(nombreLugar, accion) {
       balizas.splice(index, 1);
       // Eliminar la clase huechange del marcador correspondiente
       let marker = document.querySelector(`.leaflet-marker-pane .tooltips[title="${nombreLugar}"]`);
+      console.log(marker);
       if (marker) {
         marker.classList.remove('huechange');
       }
@@ -227,13 +230,14 @@ function cargarBalizasGuardadas() {
   let balizas = obtenerBalizasGuardadas();
   balizas.forEach(nombreLugar => {
     let marker = document.querySelector(`.leaflet-marker-pane .tooltips[title="${nombreLugar}"]`);
+    console.log(marker);
     if (marker) {
       console.log("llego a cambiar el color");
       marker.classList.add('huechange');
     }
   });
   regenerarCards();
-  console.log("balizasGuardadas : ",balizas)
+  console.log("balizasGuardadas : ", balizas)
 }
 
 // Función para obtener las balizas marcadas guardadas en localStorage
