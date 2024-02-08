@@ -1,4 +1,4 @@
-const  urlActual = (new URL(window.location.origin)).hostname;
+const urlActual = (new URL(window.location.origin)).hostname;
 const laravelApi = "http://" + urlActual + "";
 
 
@@ -49,12 +49,12 @@ function actualizarInformacionCarta(carta, lugar) {
 
 function crearNuevaCarta(lugar, lugarNombre) {
   var nuevaCarta = document.createElement('div');
-  nuevaCarta.classList.add('carta', lugarNombre, 'col-sm-12', 'col-md-4', 'rounded-5');
+  nuevaCarta.classList.add('carta', lugarNombre, 'col-sm-12', 'col-md-3', 'rounded-5');
   nuevaCarta.classList.add('d-none');
 
   nuevaCarta.innerHTML = `
     <div class="card mb-4" ondragover="allowDrop(event)" ondrop="dropItem(event)">
-        <img src="images/gestion-del-tiempo-810x455.webp" class="card-img-top" alt="...">
+        <img src="images/cards-default.png" class="card-img-top mx-auto d-block" alt="..." style="max-width: 300px; height: auto; margin: 0 auto;">
         <div class="card-body">
             <h4 class="card-title text-center">${lugarNombre}</h4>
         </div>
@@ -72,6 +72,8 @@ function crearNuevaCarta(lugar, lugarNombre) {
   `;
   document.getElementById('contenedorDeCartas').appendChild(nuevaCarta);
 }
+
+
 
 function inicializarMapa() {
   // Creación del mapa Leaflet
@@ -215,7 +217,8 @@ function guardarEliminarBaliza(nombreLugar, accion) {
       balizas.splice(index, 1);
       // Eliminar la clase huechange del marcador correspondiente
       let marker = document.querySelector(`.leaflet-marker-pane .tooltips[title="${nombreLugar}"]`);
-      console.log(marker);
+
+
       if (marker) {
         marker.classList.remove('huechange');
       }
@@ -229,14 +232,14 @@ function cargarBalizasGuardadas() {
   let balizas = obtenerBalizasGuardadas();
   balizas.forEach(nombreLugar => {
     let marker = document.querySelector(`.leaflet-marker-pane .tooltips[title="${nombreLugar}"]`);
-    console.log(marker);
+
     if (marker) {
-      console.log("llego a cambiar el color");
+
       marker.classList.add('huechange');
     }
   });
   regenerarCards();
-  console.log("balizasGuardadas : ", balizas)
+
 }
 
 // Función para obtener las balizas marcadas guardadas en localStorage

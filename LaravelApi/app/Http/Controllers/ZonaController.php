@@ -68,26 +68,25 @@ class ZonaController extends Controller
     public function alterarDatos()
     {
         $zonas = Zona::all();
-
-        // Iterar sobre cada zona y realizar la alteración deseada
+    
         foreach ($zonas as $zona) {
-            
-            $incremento_temperatura = mt_rand(1, 7) / 10; // Genera un valor entre 0.1 y 0.3
+            // Generar incremento de temperatura en décimas
+            $incremento_temperatura = (mt_rand(0, 1) === 0 ? -1 : 1) * mt_rand(0, 1) / 10; // Genera un valor entre -0.1 y 0.1
             $zona->temperatura_actual += $incremento_temperatura;
-        
-            
-            $incremento_humedad = mt_rand(1, 2) / 100; // Genera un valor entre 0.01 y 0.02 (equivalente al 1% y 2%)
-            $zona->humedad *= (1 + $incremento_humedad);
-            
-      
-            $reduccion_precipitacion = mt_rand(1, 3) / 10; // Genera un valor entre 0.1 y 0.3
-            $zona->precipitacion *= (1 - $reduccion_precipitacion);
-        
+    
+            // Generar incremento de humedad en décimas
+            $incremento_humedad = (mt_rand(0, 1) === 0 ? -1 : 1) * mt_rand(0, 1) / 100; // Genera un valor entre -0.01 y 0.01
+            $zona->humedad += $incremento_humedad;
+    
+            // Generar incremento de precipitación en décimas
+            $incremento_precipitacion = (mt_rand(0, 1) === 0 ? -1 : 1) * mt_rand(0, 1) / 10; // Genera un valor entre -0.1 y 0.1
+            $zona->precipitacion += $incremento_precipitacion;
+    
             // Guardar los cambios en la base de datos
             $zona->save();
         }
-        
-
+    
         return response()->json(['mensaje' => 'Datos alterados y guardados correctamente']);
     }
+    
 }

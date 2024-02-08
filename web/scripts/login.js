@@ -1,6 +1,6 @@
-
-const  urlActual = (new URL(window.location.origin)).hostname;
+let urlActual = (new URL(window.location.origin)).hostname;
 const laravelApi = "http://" + urlActual + "";
+const spa = `${laravelApi}:8081/spa.html`;
 
 document.getElementById('formularioRegister').addEventListener('submit', function (event) {
     event.preventDefault(); // Prevent default form submission behavior
@@ -15,16 +15,22 @@ document.getElementById('formularioRegister').addEventListener('submit', functio
 
 
 document.getElementById('formularioInicioSesion').addEventListener('submit', function (event) {
-    event.preventDefault(); // Evitar la presentación del formulario por defecto
+    event.preventDefault(); 
 
 
-    const correo = document.getElementsByName('email')[0].value;
-    const contrasena = document.getElementsByName('contrasena')[0].value;
+    const correo = document.getElementsByName('correo')[0].value;
+    const contrasena = document.getElementsByName('contrasenalog')[0].value;
 
     // Llama a la función correspondiente para manejar el inicio de sesión
     login(correo, contrasena);
 });
-
+/*
+document.addEventListener("DOMContentLoaded", function() {
+    const logoutButton = document.querySelector(".nav-link");
+    logoutButton.addEventListener("click", logout);
+    console.log("llego");
+})
+*/
 
 function cambiarFormulario() {
 
@@ -68,8 +74,9 @@ async function register(nombre, correo, contrasena) {
 };
 
 async function login(correo, contrasena) {
-    console.log(correo, contrasena);
+    
     try {
+  
         let respuesta = await fetch(laravelApi + ":8082/api/auth/login", {
             method: "POST",
             body: JSON.stringify({
@@ -84,7 +91,9 @@ async function login(correo, contrasena) {
             }
         });
         let data = await respuesta.json();
-        window.location.href = laravelApi + ":80/spa.html"
+        
+       
+        window.location.href = spa;
 
     } catch (error) {
         console.error(error);
