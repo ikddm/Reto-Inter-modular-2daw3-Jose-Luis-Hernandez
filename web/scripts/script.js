@@ -111,7 +111,6 @@ function inicializarMapa() {
     });
   });
 
-
 }
 
 function toggleInformacionCarta(nombreLugar) {
