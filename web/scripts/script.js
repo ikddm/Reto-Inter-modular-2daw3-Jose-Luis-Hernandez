@@ -114,7 +114,7 @@ function inicializarMapa() {
           const text = decoder.decode(buffer);
           const data = JSON.parse(text);
           const prediccion = data.forecastText.SPANISH;
-          console.log(data);
+          
 
           marker.bindTooltip(prediccion, { className: 'custom-tooltip' }).openTooltip();
         })

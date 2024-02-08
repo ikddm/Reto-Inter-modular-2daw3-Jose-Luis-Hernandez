@@ -14,7 +14,7 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')->hourly();
         $schedule->command('app:generar-datos-aleatorios')->everyFifteenSeconds();
-        $schedule->command('app:generar-zonas')->everyFifteenSeconds();
+        $schedule->command('app:generar-zonas')->everyFifteenMinutes();
         $schedule->command('app:guardar-historico')->hourly();
 
     }

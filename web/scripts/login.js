@@ -1,20 +1,21 @@
-const laravelApi = 'http://10.10.17.206:8082';
-const conexion = "10.10.17.206";
+const laravelApi = 'http://localhost:8082';
 
 
 document.getElementById('formularioRegister').addEventListener('submit', function (event) {
-    event.preventDefault(); // Evitar la presentación del formulario por defecto
-    console.log("registro llego");
+    event.preventDefault(); // Prevent default form submission behavior
 
+    const nombre = document.getElementsByName('nombre')[0].value;
     const correo = document.getElementsByName('email')[0].value;
     const contrasena = document.getElementsByName('contrasena')[0].value;
 
+    // Call the register function with the retrieved data
     register(nombre, correo, contrasena);
 });
 
+
 document.getElementById('formularioInicioSesion').addEventListener('submit', function (event) {
     event.preventDefault(); // Evitar la presentación del formulario por defecto
-    console.log("llego");
+
 
     const correo = document.getElementsByName('email')[0].value;
     const contrasena = document.getElementsByName('contrasena')[0].value;
@@ -25,18 +26,18 @@ document.getElementById('formularioInicioSesion').addEventListener('submit', fun
 
 
 function cambiarFormulario() {
-    
+
     var formRegistro = document.getElementById('formularioRegister');
     var formInicioSesion = document.getElementById('formularioInicioSesion');
 
-    
-    formRegistro.classList.toggle('d-none'); 
+
+    formRegistro.classList.toggle('d-none');
     formInicioSesion.classList.toggle('d-none');
 }
 
 
 async function register(nombre, correo, contrasena) {
-
+   
     try {
         let respuesta = await fetch(laravelApi + "/api/auth/register", {
             method: "POST",
@@ -44,6 +45,7 @@ async function register(nombre, correo, contrasena) {
                 name: nombre,
                 email: correo,
                 password: contrasena
+
             }),
             headers: {
                 "Content-type": "application/json; charset=UTF-8",
@@ -52,10 +54,12 @@ async function register(nombre, correo, contrasena) {
         });
 
         let data = await respuesta.json();
+        console.log(data);
 
         if ([data["message"] == 'Successfully created user!']) {
             login(data["email"], data["password"]);
         }
+        console.log(data);
 
     } catch (error) {
         console.error(error);
@@ -63,7 +67,7 @@ async function register(nombre, correo, contrasena) {
 };
 
 async function login(correo, contrasena) {
-    console.log(correo,contrasena);
+    console.log(correo, contrasena);
     try {
         let respuesta = await fetch(laravelApi + "/api/auth/login", {
             method: "POST",
@@ -80,7 +84,7 @@ async function login(correo, contrasena) {
         });
         let data = await respuesta.json();
         window.location.href = "http://localhost:8081/spa.html"
-        
+
     } catch (error) {
         console.error(error);
     }

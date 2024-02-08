@@ -71,18 +71,22 @@ class ZonaController extends Controller
 
         // Iterar sobre cada zona y realizar la alteración deseada
         foreach ($zonas as $zona) {
-            // Por ejemplo, incrementar la temperatura actual en 5 grados
-            $zona->temperatura_actual += 5;
-
-            // Modificar la humedad (puedes personalizar la lógica según tus necesidades)
-            $zona->humedad = $zona->humedad * 1.1; // Aumentar la humedad en un 10%
-
-            // Modificar la precipitación (puedes personalizar la lógica según tus necesidades)
-            $zona->precipitacion = $zona->precipitacion * 0.8; // Reducir la precipitación en un 20%
-
+            
+            $incremento_temperatura = mt_rand(1, 7) / 10; // Genera un valor entre 0.1 y 0.3
+            $zona->temperatura_actual += $incremento_temperatura;
+        
+            
+            $incremento_humedad = mt_rand(1, 2) / 100; // Genera un valor entre 0.01 y 0.02 (equivalente al 1% y 2%)
+            $zona->humedad *= (1 + $incremento_humedad);
+            
+      
+            $reduccion_precipitacion = mt_rand(1, 3) / 10; // Genera un valor entre 0.1 y 0.3
+            $zona->precipitacion *= (1 - $reduccion_precipitacion);
+        
             // Guardar los cambios en la base de datos
             $zona->save();
         }
+        
 
         return response()->json(['mensaje' => 'Datos alterados y guardados correctamente']);
     }
