@@ -7,16 +7,22 @@ document.addEventListener('DOMContentLoaded', async function () {
   await generarCards();
   inicializarMapa();
   cargarBalizasGuardadas();
-
   setInterval(generarCards, 5000);
 });
 
 async function generarCards() {
   try {
-    const response = await fetch(`${laravelApi}:8082/api/obtenerZonas`);
+    const response = await fetch(`${laravelApi}:8082/api/auth/obtenerZonas`, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + sessionStorage.getItem('accessToken')
+      }
+    });
+    
     if (!response.ok) {
       throw new Error('Error en la solicitud de datos');
     }
+    
     const data = await response.json();
 
     data.forEach(lugar => {
@@ -38,6 +44,7 @@ async function generarCards() {
     ocultarAnimacionCarga();
   }
 }
+
 
 function actualizarInformacionCarta(carta, lugar) {
   carta.querySelector('.temperatura').textContent = `Temperatura: ${lugar.temperatura_actual} °C`;
@@ -178,17 +185,16 @@ function dropItem(event) {
   // Obtén el tipo de ícono soltado a partir del atributo "data-tipo"
   const tipoIcono = event.dataTransfer.getData('text/plain').replace(/^.*[\\/]/, '').replace(/\..+$/, '');
 
-  // Obtén el elemento correspondiente dentro de la carta actual
+  
   const carta = event.currentTarget;
 
-  // Encuentra el elemento con la clase igual al tipo de ícono
   const elementoMostrar = carta.querySelector(`.${tipoIcono}`);
 
-  // Verifica que el elemento exista antes de intentar acceder a su classList
+
   if (elementoMostrar) {
-    // Cambia la clase para mostrar el elemento
+    
     elementoMostrar.classList.remove('d-none');
-    // Asigna el manejador de eventos de clic al elemento mostrado
+   
     elementoMostrar.addEventListener('click', eliminarItem);
   }
 }
@@ -260,7 +266,7 @@ function regenerarCards() {
 function mostrarAnimacionCarga() {
   var loadingAnimation = document.getElementById('loadingAnimation');
   var animacionCarga = document.createElement('div');
-  animacionCarga.classList.add('loader'); // Asegúrate de que la clase loader esté definida en tu CSS
+  animacionCarga.classList.add('loader'); 
   loadingAnimation.appendChild(animacionCarga);
   loadingAnimation.classList.remove('d-none');
 }

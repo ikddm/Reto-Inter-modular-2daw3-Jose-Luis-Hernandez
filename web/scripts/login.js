@@ -3,25 +3,25 @@ const laravelApi = "http://" + urlActual + "";
 const spa = `${laravelApi}:8081/spa.html`;
 
 document.getElementById('formularioRegister').addEventListener('submit', function (event) {
-    event.preventDefault(); // Prevent default form submission behavior
+    event.preventDefault();
 
     const nombre = document.getElementsByName('nombre')[0].value;
     const correo = document.getElementsByName('email')[0].value;
     const contrasena = document.getElementsByName('contrasena')[0].value;
 
-    // Call the register function with the retrieved data
+
     register(nombre, correo, contrasena);
 });
 
 
 document.getElementById('formularioInicioSesion').addEventListener('submit', function (event) {
-    event.preventDefault(); 
+    event.preventDefault();
 
 
     const correo = document.getElementsByName('correo')[0].value;
     const contrasena = document.getElementsByName('contrasenalog')[0].value;
 
-    // Llama a la función correspondiente para manejar el inicio de sesión
+
     login(correo, contrasena);
 });
 /*
@@ -44,7 +44,7 @@ function cambiarFormulario() {
 
 
 async function register(nombre, correo, contrasena) {
-   
+
     try {
         let respuesta = await fetch(laravelApi + ":8082/api/auth/register", {
             method: "POST",
@@ -74,9 +74,7 @@ async function register(nombre, correo, contrasena) {
 };
 
 async function login(correo, contrasena) {
-    
     try {
-  
         let respuesta = await fetch(laravelApi + ":8082/api/auth/login", {
             method: "POST",
             body: JSON.stringify({
@@ -90,13 +88,24 @@ async function login(correo, contrasena) {
                 'Access-Control-Allow-Origin': '*'
             }
         });
-        let data = await respuesta.json();
-        
-       
-        window.location.href = spa;
 
+        if (!respuesta.ok) {
+            throw new Error('Network response was not ok');
+        }
+
+        let data = await respuesta.json();
+
+        if (respuesta.status === 401) {
+            console.log("Error: Unauthorized access");
+        } else {
+            console.log(data);
+            sessionStorage.setItem('accessToken', data.access_token);
+            window.location = spa;
+            
+
+        }
     } catch (error) {
-        console.error(error);
+        console.error("Error:", error.message);
     }
 }
 
