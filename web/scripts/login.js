@@ -2,6 +2,7 @@ let urlActual = (new URL(window.location.origin)).hostname;
 const laravelApi = "http://" + urlActual + "";
 const spa = `${laravelApi}:8081/spa.html`;
 
+// Esto se utiliza para escuchar el evento del envio del formulario de registro
 document.getElementById('formularioRegister').addEventListener('submit', function (event) {
     event.preventDefault();
 
@@ -13,7 +14,7 @@ document.getElementById('formularioRegister').addEventListener('submit', functio
     register(nombre, correo, contrasena);
 });
 
-
+// Esto se utiliza para escuchar el evento del envio del formulario de login
 document.getElementById('formularioInicioSesion').addEventListener('submit', function (event) {
     event.preventDefault();
 
@@ -24,14 +25,7 @@ document.getElementById('formularioInicioSesion').addEventListener('submit', fun
 
     login(correo, contrasena);
 });
-/*
-document.addEventListener("DOMContentLoaded", function() {
-    const logoutButton = document.querySelector(".nav-link");
-    logoutButton.addEventListener("click", logout);
-    console.log("llego");
-})
-*/
-
+//Función para alternar entre ambos formularios
 function cambiarFormulario() {
 
     var formRegistro = document.getElementById('formularioRegister');
@@ -42,7 +36,9 @@ function cambiarFormulario() {
     formInicioSesion.classList.toggle('d-none');
 }
 
-
+/*Función para registrarse, recibimos 3 parametros que hemos recuperado en el evento de escucha 
+hace un fetch a el servidor laravel y tras crear el usuario llama a la función login para logear
+sin necesidad de escribir el correo y la contraseña de nuevo*/
 async function register(nombre, correo, contrasena) {
 
     try {
@@ -72,6 +68,9 @@ async function register(nombre, correo, contrasena) {
         console.error(error);
     }
 };
+
+/*Función para logear, recibimos 2 parametros que hemos recuperado en el evento de escucha 
+hace un fetch a el servidor laravel y seteamos en el session storage el token bearer que nos da laravel*/
 
 async function login(correo, contrasena) {
     try {
@@ -108,7 +107,8 @@ async function login(correo, contrasena) {
         console.error("Error:", error.message);
     }
 }
-
+/*Función para cerrar sesion, se recoge el item de la session storage y tras verificar
+que es correcto cierra sesión*/
 async function logout() {
     try {
         let respuesta = await fetch(laravelApi + "/api/auth/logout", {

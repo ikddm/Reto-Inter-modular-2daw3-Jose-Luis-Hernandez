@@ -1,7 +1,8 @@
+//variable que recibe los datos de la ventana del usuario
 const urlActual = (new URL(window.location.origin)).hostname;
 const laravelApi = "http://" + urlActual + "";
 
-
+// Ejecución de todo lo necesario para crear la pagina.
 document.addEventListener('DOMContentLoaded', async function () {
   mostrarAnimacionCarga(); // Mostrar la animación de carga antes de iniciar la creación del mapa
   await generarCards();
@@ -9,7 +10,7 @@ document.addEventListener('DOMContentLoaded', async function () {
   cargarBalizasGuardadas();
   setInterval(generarCards, 5000);
 });
-
+/* Función que genera las cards  o actualizar la información en caso de que este creada actualiza su información también oculta la aninmacion de carga al final de la ejecución*/
 async function generarCards() {
   try {
     const response = await fetch(`${laravelApi}:8082/api/auth/obtenerZonas`, {
@@ -36,15 +37,16 @@ async function generarCards() {
       }
     });
 
-    // Ocultar la animación de carga después de cargar los datos
     ocultarAnimacionCarga();
   } catch (error) {
     console.error('Error al obtener los datos:', error);
-    // Ocultar la animación de carga en caso de error
+
     ocultarAnimacionCarga();
   }
 }
 
+/* Funcion que recupera el contenido de la carta y lo actualiza con los valores nuevos.
+*/
 
 function actualizarInformacionCarta(carta, lugar) {
   carta.querySelector('.temperatura').textContent = `Temperatura: ${lugar.temperatura_actual} °C`;
@@ -53,6 +55,9 @@ function actualizarInformacionCarta(carta, lugar) {
   carta.querySelector('.nublado').textContent = `Estado del cielo: ${lugar.estado_cielo}`;
   carta.querySelector('.lluvia').textContent = `Precipitación: ${lugar.precipitacion} mm`;
 }
+
+/* Función para crear las cartas dinamicante y añadirlas al contenedor */
+
 
 function crearNuevaCarta(lugar, lugarNombre) {
   var nuevaCarta = document.createElement('div');
@@ -122,6 +127,9 @@ function inicializarMapa() {
 
 }
 
+ // Funciones para ocular y mostrar la carta y añadir la clase huechange que es para mostrar la baliza de otro color.
+ // y guardar la carta en local storage 
+
 function toggleInformacionCarta(nombreLugar) {
   let carta = document.querySelector(`.carta.${nombreLugar}`);
   if (carta) {
@@ -137,6 +145,8 @@ function toggleClaseHuechange(marker, nombreLugar) {
     guardarEliminarBaliza(nombreLugar, 'eliminar');
   }
 }
+/* Función para mostrar el tooltip recuperamos los datos de la region del array de lugares y hacemos el fetch al hacer hover encima de la baliza
+recuperamos el dato le pasamos un decoder para quitar los rombos y abrimos un tooltip de tipo jquery*/
 
 function mostrarPrediccionTiempo(marker, lugar) {
   let regions = lugar.regions;
@@ -182,7 +192,7 @@ function allowDrop(event) {
 function dropItem(event) {
   event.preventDefault();
 
-  // Obtén el tipo de ícono soltado a partir del atributo "data-tipo"
+  // Obtén el tipo de ícono soltado a partir del atributo "data-tipo" los metodos replace son para borrar los caracteres raros y poder recuperar data tipo bien.
   const tipoIcono = event.dataTransfer.getData('text/plain').replace(/^.*[\\/]/, '').replace(/\..+$/, '');
 
   
@@ -206,6 +216,7 @@ function eliminarItem(event) {
 }
 
 // Función para guardar o eliminar el estado de la baliza en localStorage
+
 function guardarEliminarBaliza(nombreLugar, accion) {
   let balizas = obtenerBalizasGuardadas();
   if (accion === 'guardar') {
@@ -224,7 +235,6 @@ function guardarEliminarBaliza(nombreLugar, accion) {
       // Eliminar la clase huechange del marcador correspondiente
       let marker = document.querySelector(`.leaflet-marker-pane .tooltips[title="${nombreLugar}"]`);
 
-
       if (marker) {
         marker.classList.remove('huechange');
       }
@@ -234,6 +244,7 @@ function guardarEliminarBaliza(nombreLugar, accion) {
 }
 
 // Función para cargar las balizas marcadas guardadas en localStorage
+
 function cargarBalizasGuardadas() {
   let balizas = obtenerBalizasGuardadas();
   balizas.forEach(nombreLugar => {
@@ -245,7 +256,6 @@ function cargarBalizasGuardadas() {
     }
   });
   regenerarCards();
-
 }
 
 // Función para obtener las balizas marcadas guardadas en localStorage
@@ -277,7 +287,7 @@ function ocultarAnimacionCarga() {
   // Eliminar la animación de carga
   loadingAnimation.classList.add('d-none');
 }
-
+// funciones para formatear las fechas con el formato necesario para el fetch de los pronosticos
 function conseguirFechaFormateada() {
   var fechaHoy = new Date();
   var year = fechaHoy.getFullYear();
@@ -300,6 +310,9 @@ function obtenerFechaDiaSiguiente() {
 
   return fechaFormateada;
 }
+
+
+// Datos fijos para graficos.
 
 const xValues = [100, 200, 300, 400, 500, 600, 700];
 
